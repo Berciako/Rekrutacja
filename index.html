@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadanie rekrutacyjne | Formularz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/dist/css/style.min.css">
+</head>
+
+<body>
+
+
+
+    <div class="content">
+        <div class="form">
+            <h1>Zarejestruj się!</h1>
+            <div class="wrapper">
+                <form>
+                    <div class="form-box">
+                        <label for="username">Imię:</label>
+                        <input type="text" id="name" placeholder="Podaj imię">
+                        <p class="error-text">error</p>
+                    </div>
+                    <div class="form-box">
+                        <label for="surrname">Nazwisko:</label>
+                        <input type="text" id="surrname" placeholder="Podaj nazwisko">
+                        <p class="error-text">error</p>
+                    </div>
+                    <div class="form-box">
+                        <label for="email">Adres e-mail:</label>
+                        <input type="email" id="email" placeholder="Podaj adres mailowy">
+                        <p class="error-text">error</p>
+                    </div>
+                    <div class="form-box">
+                        <label for="phone">Numer telefonu:</label>
+                        <input type="number" id="phone" placeholder="Podaj numer telefonu" class="error">
+                        <p class="error-text">error</p>
+                    </div>
+                    <div class="form-box">
+                        <label for="address">Adres zamieszkania:</label>
+                        <input type="text" id="address" placeholder="Podaj adres zamieszkania">
+                        <p class="error-text">error</p>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="clear">Wyczyść</button>
+                        <button class="send">Wyślij</button>
+                    </div>
+                    <div class="popup">
+                        <p class="popup__text">Formularz został poprawnie wysłany!</p>
+                        <button class="close">Zamknij</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="users">
+
+
+            <h2 class="users__heading">Lista zarejestrowanych osób</h2>
+            
+
+            <ul>
+                <li data-id='test1'>
+                    <p class="user-item"><span class="bolder">Imię:</span>Adrian</p>
+                    <p class="user-item"><span class="bolder">Nazwisko:</span>Nowak</p>
+                    <p class="user-item"><span class="bolder">Numer telefonu:</span>000 000 000</p>
+                    <p class="user-item"><span class="bolder">Adres Zamieszkania: </span>Żalno</p>
+                    <p class="user-item"><span class="bolder">Adres E-mail:</span>albert.przygodzki02@gmail.com</p>
+                    <img class="x-icon delete" src="/dist/img/x.svg" alt="Delete user">
+                </li>
+                
+            </ul>
+
+        </div>
+
+    </div>
+
+    <script src="/dist/js/script.min.js"></script>
+</body>
+
+</html>
