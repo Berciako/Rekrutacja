@@ -43,6 +43,23 @@
                         <input type="text" id="address" placeholder="Podaj adres zamieszkania">
                         <p class="error-text">error</p>
                     </div>
+                    <div class="line"></div>
+                    <p class="participant-heading">Podaj dane uczestnika</p>
+                    <div class="form-box">
+                        <label for="participant-name">Imię uczestnika:</label>
+                        <input type="text" id="participant-name" placeholder="Podaj imię uczestnika">
+                        <p class="error-text">error</p>
+                    </div>
+                    <div class="form-box">
+                        <label for="participant-surrname">Nazwisko Uczestnika:</label>
+                        <input type="text" id="participant-surrname" placeholder="Podaj nazwisko uczestnika">
+                        <p class="error-text">error</p>
+                    </div>
+                    <div class="form-box">
+                        <label for="participant-email">Email uczestnika:</label>
+                        <input type="text" id="participant-email" placeholder="Podaj email uczestnika">
+                        <p class="error-text">error</p>
+                    </div>
                     <div class="control-buttons">
                         <button class="clear">Wyczyść</button>
                         <button class="send">Wyślij</button>
@@ -60,7 +77,7 @@
 
 
             <h2 class="users__heading">Lista zarejestrowanych osób</h2>
-            
+            <p class="error-info">Brak zarejestrowanych osób</p>
 
             <ul>
                 <li data-id='test1'>
@@ -68,10 +85,36 @@
                     <p class="user-item"><span class="bolder">Nazwisko:</span>Nowak</p>
                     <p class="user-item"><span class="bolder">Numer telefonu:</span>000 000 000</p>
                     <p class="user-item"><span class="bolder">Adres Zamieszkania: </span>Żalno</p>
-                    <p class="user-item"><span class="bolder">Adres E-mail:</span>albert.przygodzki02@gmail.com</p>
+                    <p class="user-item"><span class="bolder mail">Adres E-mail:</span>adriannowak@gmail.com</p>
                     <img class="x-icon delete" src="/dist/img/x.svg" alt="Delete user">
+                    <div class="line"></div>
+                    <div class="participant-box">
+                        <p class="participant-heading">Dane uczestnika</p>
+                        <div class="participant-data">
+                            <p class="user-item"><span class="bolder">Imię uczestnika: </span>Marek</p>
+                            <p class="user-item"><span class="bolder">Nazwisko uczestnika: </span>Basiak</p>
+                            <p class="user-item"><span class="bolder mail">Email uczestnika: </span>Marek@kontakt.pl</p>
+                        </div>
+                    </div>
                 </li>
-                
+                <li data-id='test1'>
+                    <p class="user-item"><span class="bolder">Imię:</span>Adrian</p>
+                    <p class="user-item"><span class="bolder">Nazwisko:</span>Nowak</p>
+                    <p class="user-item"><span class="bolder">Numer telefonu:</span>000 000 000</p>
+                    <p class="user-item"><span class="bolder">Adres Zamieszkania: </span>Żalno</p>
+                    <p class="user-item"><span class="bolder mail">Adres E-mail:</span>adriannowak@gmail.com</p>
+                    <img class="x-icon delete" src="/dist/img/x.svg" alt="Delete user">
+                    <div class="line"></div>
+                    <div class="participant-box">
+                        <p class="participant-heading">Dane uczestnika</p>
+                        <div class="participant-data">
+                            <p class="user-item"><span class="bolder">Imię uczestnika: </span>Marek</p>
+                            <p class="user-item"><span class="bolder">Nazwisko uczestnika: </span>Basiak</p>
+                            <p class="user-item "><span class="bolder mail">Email uczestnika: </span>Marek@kontakt.pl</p>
+                        </div>
+                    </div>
+                </li>
+
             </ul>
 
         </div>

@@ -16,6 +16,20 @@ body {
 	width: 100%;
 	max-width: 900px;
 }
+.line{
+	margin: 2em 0;
+	width: 100%;
+	height: 2px;
+	background-color: $cyan;
+}
+.participant-heading{
+	position: relative;
+	font-size: 1.6rem;
+	text-align: center;
+	padding: 1em 0;
+	color: $cyan;
+	font-weight: 700;
+}
 .content {
 	position: relative;
 	display: flex;
@@ -36,6 +50,7 @@ body {
 			padding: 1em 2em;
 			display: flex;
 			flex-direction: column;
+			
 			.form-box {
 				display: flex;
 				flex-direction: column;
@@ -141,6 +156,15 @@ body {
 	.users {
 		margin-top: 1em;
 		width: 100%;
+		
+		.error-info{
+			margin-bottom: 3em;
+			font-size: 1.8rem;
+			text-align: center;
+			font-weight: 700;
+			letter-spacing: 2px;
+			color: $gray;
+		}
 		&__heading {
 			margin-top: 1em;
 			padding: 0.5em 1em;
@@ -179,6 +203,18 @@ body {
 					top: 0;
 					right: 0;
 					cursor: pointer;
+				}
+				.line{
+					position: relative !important;
+				}
+				.participant-box{
+					display: flex;
+					flex-direction: column;
+					.participant-data{
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
+					}
 				}
 			}
 		}
@@ -252,6 +288,18 @@ body {
 							border-right: 1px solid none;
 						}
 					}
+					.participant-box{
+						display: flex;
+						flex-direction: column;
+						.participant-data{
+							display: flex;
+							flex-direction: row;
+							justify-content: space-between;
+							.user-item{
+								width: auto;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -278,6 +326,7 @@ body {
 						padding: 1em;
 						border-right: 1px solid $gray;
 						width: auto;
+						width: 25%;
 						&:nth-child(5){
 							border-right: 1px solid none;
 						}

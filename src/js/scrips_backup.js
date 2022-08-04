@@ -84,7 +84,7 @@ const addUser = () => {
 	<p class="user-item"><span class="bolder">Nazwisko:</span>${surrname.value}</p>
 	<p class="user-item"><span class="bolder">Numer telefonu:</span>${phone.value}</p>
 	<p class="user-item"><span class="bolder">Adres Zamieszkania: </span>${address.value}</p>
-	<p class="user-item"><span class="bolder mail">Adres E-mail:</span>${email.value}</p>
+	<p class="user-item"><span class="bolder">Adres E-mail:</span>${email.value}</p>
 	<img class="x-icon delete" src="/dist/img/x.svg" alt="Delete user">
 	<div class="line"></div>
 	<div class="participant-box">
@@ -92,7 +92,7 @@ const addUser = () => {
 		<div class="participant-data">
 			<p class="user-item"><span class="bolder">Imię uczestnika: </span>${participantName.value}</p>
 			<p class="user-item"><span class="bolder">Nazwisko uczestnika: </span>${participantSurrname.value}</p>
-			<p class="user-item"><span class="bolder mail">Email uczestnika: </span>${participantEmail.value}</p>
+			<p class="user-item"><span class="bolder">Email uczestnika: </span>${participantEmail.value}</p>
 		</div>
 	</div>
 `
@@ -135,10 +135,9 @@ const deleteUser = e => {
 const lookForMail = (mail, partMail) => {
 	const allMails = document.querySelectorAll('.mail')
 	allMails.forEach(el =>{
+		console.log(el.nextSibling.textContent);
 		if(el.nextSibling.textContent === mail.value){
 			showError(mail, 'Podano już tego maila')
-		} else if(el.nextSibling.textContent === partMail.value){
-			showError(partMail, 'Podano już tego maila')
 		}
 	})
 	
