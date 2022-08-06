@@ -10,28 +10,20 @@ const participantEmail = document.querySelector('#participant-email')
 const sendBtn = document.querySelector('.send')
 const clearBtn = document.querySelector('.clear')
 const closeBtn = document.querySelector('.close')
-// const ulList = document.querySelector('.users ul')
 const popup = document.querySelector('.popup')
-const xIcon = document.querySelector('.x-icon')
 const errorInfo = document.querySelector('.error-info')
 const addUserBtn = document.querySelector('.add-user')
+const userDatas = document.querySelector('.user-datas')
 
 //
 
-const userDatas = document.querySelector('.user-datas')
 
-let participant
-let newUser
-let newMail
-let newUserMail
-let allUsers 
 
 // DODAWANIE UCZESTNIKÓW
 
-const allInputs = document.querySelectorAll('.form-box input')
-console.log(allInputs);
-
-
+let participant
+let allInputs
+let allMails = document.getElementsByClassName('mail')
 
 
 const addParticipant = e => {
@@ -52,17 +44,14 @@ const addParticipant = e => {
 							</div>
 							<div class="form-box">
 								<label for="participant-email">Email uczestnika:</label>
-								<input type="text" id="participant-email" placeholder="Podaj email uczestnika">
+								<input type="text" id="participant-email" class="mail" placeholder="Podaj email uczestnika">
 								<p class="error-text">error</p>
 							</div>
 							<div class="line"></div>`
 	userDatas.append(participant)
 }
 
-
-// 
-
-
+//
 
 const showError = (input, msg) => {
 	const formBox = input.parentElement
@@ -71,83 +60,59 @@ const showError = (input, msg) => {
 	errorMsg.textContent = msg
 }
 
-
 const clearError = input => {
 	const formBox = input.parentElement
 	formBox.classList.remove('error')
 }
 
+// Mail
 
-const checkForm = input => {
-	input.forEach(el => {
-		if (el.value === '') {
-			showError(el, el.placeholder)
-		} else {
+const checkMail = () => {
+	const re =
+		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{2,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+	Array.from(allMails).forEach(el => {
+		if (re.test(el.value)) {
 			clearError(el)
+		} else {
+			showError(el, 'Email jest niepoprawyny')
 		}
 	})
 }
 
-const checkMail = email => {
-	const re =
-		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{2,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+//
 
-	if (re.test(email.value)) {
-		clearError(email)
-	} else {
-		showError(email, 'Email jest niepoprawyny')
-	}
-}
-const checkParticipantMail = email => {
-	const re =
-		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{2,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
-	if (re.test(email.value)) {
-		clearError(email)
-	} else {
-		showError(email, 'Email jest niepoprawyny')
-	}
-}
 const countErrors = () => {
-	const allInputs = document.querySelectorAll('.form-box')
+	const formBoxes = document.querySelectorAll('.form-box')
 	let errorCount = 0
-	allInputs.forEach(el => {
+	formBoxes.forEach(el => {
 		if (el.classList.contains('error')) {
 			errorCount++
 		}
 	})
 	if (errorCount === 0) {
 		popup.classList.add('show-popup')
-		addUser()
 		hideError()
 		clearForm()
 	}
 }
+
 const hideError = () => {
 	errorInfo.style.display = 'none'
 }
+
 const clearForm = () => {
-	;[
-		username,
-		surrname,
-		email,
-		phone,
-		address,
-		participantName,
-		participantSurrname,
-		participantEmail,
-	].forEach(el => {
+	allInputs.forEach(el => {
 		el.value = ''
 		clearError(el)
 	})
 }
+
 const closePopup = () => {
 	popup.classList.remove('show-popup')
 }
 
-
-// USUWANIE UCZESTNIKÓW 
-
+// USUWANIE UCZESTNIKÓW
 
 const checkClick = e => {
 	if (e.target.matches('img')) {
@@ -156,72 +121,55 @@ const checkClick = e => {
 		return
 	}
 }
-const deleteParticipant = (e) => {
+
+const deleteParticipant = e => {
 	e.target.closest('div').remove()
 }
 
+//
 
-// 
+// Mail Checker
 
-// TEST
-// const lookForUsers = () => {
-// 	allUsers = document.querySelectorAll('.user-data .form-box')
-// 	allUsers.forEach(el =>{
-// 		console.log(el.nextElementSibling.closest('Imię uczestnika:'));
-// 	})
-// }
-
-// 
-
-
-const lookForMail = (mail, partMail) => {
-	const allMails = document.querySelectorAll('.mail')
-	allMails.forEach(el => {
-		if (el.nextSibling.textContent === mail.value) {
-			showError(mail, 'Podano już tego maila')
-		} else if (el.nextSibling.textContent === partMail.value) {
-			showError(partMail, 'Podano już tego maila')
+const lookForMail = () => {
+	let testMails = [...document.getElementsByClassName('mail')].map(item => item.value)
+	testMails.forEach(el =>{
+		if(testMails.includes(el.value, el)){
+			console.log('istnieje');
+		} else{
+			console.log('nie istnieje');
 		}
 	})
 }
 
+//
 clearBtn.addEventListener('click', e => {
 	e.preventDefault()
-	;[
-		username,
-		surrname,
-		email,
-		phone,
-		address,
-		participantSurrname,
-		participantEmail,
-		participantName,
-	].forEach(el => {
+	allInputs = document.querySelectorAll('.form-box input')
+	allInputs.forEach(el => {
 		el.value = ''
 		clearError(el)
 	})
 })
+
 sendBtn.addEventListener('click', e => {
 	e.preventDefault()
-	checkForm([
-		username,
-		surrname,
-		email,
-		phone,
-		address,
-		participantName,
-		participantSurrname,
-		participantEmail,
-	])
-	// lookForUsers()
-	checkMail(email)
-	checkParticipantMail(participantEmail)
-	lookForMail(email, participantEmail)
+	allInputs = document.querySelectorAll('.form-box input')
+	allInputs.forEach(el => {
+		if (el.value === '') {
+			showError(el, el.placeholder)
+		} else {
+			clearError(el)
+		}
+	})
+	checkMail()
+	lookForMail()
 	countErrors()
 })
+
 closeBtn.addEventListener('click', e => {
 	e.preventDefault()
 	popup.classList.remove('show-popup')
 })
+
 addUserBtn.addEventListener('click', addParticipant)
 userDatas.addEventListener('click', checkClick)

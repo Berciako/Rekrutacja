@@ -16,13 +16,22 @@ body {
 	width: 100%;
 	max-width: 900px;
 }
-.line{
+.add-user {
+	padding: 0.5em 1em;
+	width: 100%;
+	font-size: 1.5rem;
+	border-radius: 8px;
+	border: 1px solid $main-bg;
+	background-color: $cyan;
+	cursor: pointer;
+}
+.line {
 	margin: 2em 0;
 	width: 100%;
 	height: 2px;
 	background-color: $cyan;
 }
-.participant-heading{
+.participant-heading {
 	position: relative;
 	font-size: 1.6rem;
 	text-align: center;
@@ -50,7 +59,7 @@ body {
 			padding: 1em 2em;
 			display: flex;
 			flex-direction: column;
-			
+
 			.form-box {
 				display: flex;
 				flex-direction: column;
@@ -151,154 +160,47 @@ body {
 			.show-popup {
 				top: 0;
 			}
-		}
-	}
-	.users {
-		margin-top: 1em;
-		width: 100%;
-		
-		.error-info{
-			margin-bottom: 3em;
-			font-size: 1.8rem;
-			text-align: center;
-			font-weight: 700;
-			letter-spacing: 2px;
-			color: $gray;
-		}
-		&__heading {
-			margin-top: 1em;
-			padding: 0.5em 1em;
-			margin-bottom: 1em;
-			text-align: center;
-			color: $cyan;
-			font-size: 1.6rem;
-		}
-		ul {
-			display: flex;
-			flex-direction: column;
-			li {
-				position: relative;
-				padding: 1em 1.5em;
-				margin-bottom: 2em;
-				color: $gray;
-				display: flex;
-				flex-direction: column;
-				list-style: none;
-				font-size: 1.3rem;
-				background-color: #12191b;
-				width: 100%;
-				span {
-					color: $cyan;
-					margin: 0.5em 0;
-					font-size: 1.6rem;
-					font-weight: 700;
-				}
-				.user-item {
-					display: flex;
-					flex-direction: column;
-				}
-				.x-icon {
-					position: absolute;
-					padding: 1em;
-					top: 0;
-					right: 0;
-					cursor: pointer;
-				}
-				.line{
-					position: relative !important;
-				}
-				.participant-box{
-					display: flex;
-					flex-direction: column;
-					.participant-data{
-						display: flex;
-						flex-direction: column;
-						justify-content: space-between;
+			.user-datas {
+				.user-data {
+					position: relative;
+
+					.x-icon {
+						padding: 1em 1em 1em 0;
+						cursor: pointer;
 					}
 				}
 			}
 		}
 	}
 }
-@media(min-width: 768px){
-	.content{
-		h1{
+@media (min-width: 768px) {
+	.content {
+		h1 {
 			font-size: 4rem;
 		}
-		.form{
-			form{
-				.form-box{
-					label{
+		.form {
+			form {
+				.form-box {
+					label {
 						font-size: 2rem;
 					}
-					input{
+					input {
 						font-size: 1.8rem;
 						padding: 1em 2em;
 					}
 				}
-				.control-buttons{
-					button{
+				.control-buttons {
+					button {
 						font-size: 2rem;
 					}
 				}
-				.popup{
-					&__text{
+				.popup {
+					&__text {
 						font-size: 2.6rem;
 					}
-					.close{
+					.close {
 						font-size: 2rem;
 						padding: 1em 2em;
-					}
-				}
-			}
-		}
-		.users{
-			&__heading{
-				font-size: 3rem;
-			}
-			ul{
-				li{
-					padding: 3em 1.5em;
-					display: flex;
-					flex-direction: row;
-					flex-wrap: wrap;
-					width: 100%;
-					justify-content: space-around;
-					// justify-content: space-between;
-					.user-item {
-						display: flex;
-						justify-content: space-between;
-						padding: 1em;
-						border-right: 1px solid $gray;
-						width: 25%;
-						font-size: 1.7rem;
-						.bolder{
-							margin-bottom: 1em;
-							font-size: 1.8rem;
-						}
-						&:nth-child(4){
-							border-right: 1px solid none;
-						}
-						&:nth-child(5){
-							display: flex;
-							flex-direction: column;
-							justify-content: center;
-							width: 100%;
-							align-items: center;
-							border-right: 1px solid none;
-						}
-					}
-					.participant-box{
-						display: flex;
-						flex-direction: column;
-						.participant-data{
-							display: flex;
-							flex-direction: row;
-							justify-content: space-between;
-							.user-item{
-								width: auto;
-							}
-						}
 					}
 				}
 			}
@@ -312,27 +214,6 @@ body {
 		align-items: flex-start;
 		.form {
 			width: 40%;
-		}
-		.users {
-			width: 60%;
-			ul {
-				li {
-					padding: 2em 1em;
-					display: flex;
-					flex-direction: row;
-					flex-wrap: wrap;
-					.user-item {
-						font-size: 1.4rem;
-						padding: 1em;
-						border-right: 1px solid $gray;
-						width: auto;
-						width: 25%;
-						&:nth-child(5){
-							border-right: 1px solid none;
-						}
-					}
-				}
-			}
 		}
 	}
 }
