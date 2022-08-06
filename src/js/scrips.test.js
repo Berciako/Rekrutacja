@@ -31,7 +31,7 @@ const addParticipant = e => {
 	participant = document.createElement('div')
 	participant.classList.add('user-data')
 	participant.innerHTML = `
-	  <img class="x-icon" src="/dist/img/x.svg" alt="usuń użytkownika">
+	  <img class="x-icon" src="./dist/img/x.svg" alt="usuń użytkownika">
 	<div class="form-box">
 	 <label for="participant-name">Imię uczestnika:</label>
 								<input type="text" id="participant-name" placeholder="Podaj imię uczestnika">
