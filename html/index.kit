@@ -61,36 +61,21 @@
                             </div>
                             <div class="form-box">
                                 <label for="participant-email">Email uczestnika:</label>
-                                <input type="text" id="participant-email" class="mail" placeholder="Podaj email uczestnika">
+                                <input type="text" id="participant-email" class="mail"
+                                    placeholder="Podaj email uczestnika">
                                 <p class="error-text">error</p>
-                            </div>                           
+                            </div>
                             <div class="line"></div>
 
-                        </div>
-                        <div class="user-data">
-                            <img class="x-icon" src="./dist/img/x.svg" alt="usuń użytkownika">
-                            <div class="form-box">
-                                <label for="participant-name">Imię uczestnika:</label>
-                                <input type="text" id="participant-name" placeholder="Podaj imię uczestnika">
-                                <p class="error-text">error</p>
-                            </div>
-                            <div class="form-box">
-                                <label for="participant-surrname">Nazwisko Uczestnika:</label>
-                                <input type="text" id="participant-surrname" placeholder="Podaj nazwisko uczestnika">
-                                <p class="error-text">error</p>
-                            </div>
-                            <div class="form-box">
-                                <label for="participant-email">Email uczestnika:</label>
-                                <input type="text" id="participant-email" class="mail" placeholder="Podaj email uczestnika">
-                                <p class="error-text">error</p>
-                            </div>
-                            <div class="line"></div>
-                        </div>
+                        </div>                       
                     </div>
-                    <button class="add-user">Dodaj kolejnego uczestnika</button>
+                    <div class="add-button">
+                        <button class="add-user">Dodaj kolejnego uczestnika</button>
+                    </div>
                     <div class="control-buttons">
                         <button class="clear">Wyczyść</button>
                         <button class="send">Wyślij</button>
+                        <img class="loader" src="./dist/img/loader.svg" alt="loading">
                     </div>
                     <div class="popup">
                         <p class="popup__text">Formularz został poprawnie wysłany!</p>
@@ -101,7 +86,7 @@
         </div>
     </div>
 
-    <script src="./dist/js/scrips.test.min.js"></script>
+    <script src="./dist/js/script.min.js"></script>
 </body>
 
 </html>

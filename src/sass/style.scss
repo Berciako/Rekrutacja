@@ -16,14 +16,18 @@ body {
 	width: 100%;
 	max-width: 900px;
 }
-.add-user {
-	padding: 0.5em 1em;
-	width: 100%;
-	font-size: 1.5rem;
-	border-radius: 8px;
-	border: 1px solid $main-bg;
-	background-color: $cyan;
-	cursor: pointer;
+.add-button{
+	margin-bottom: 1em;
+	.add-user {
+		padding: 0.5em 1em;
+		width: 100%;
+		font-size: 1.5rem;
+		border-radius: 8px;
+		border: 1px solid $main-bg;
+		color: $main-bg;
+		background-color: $cyan;
+		cursor: pointer;
+	}
 }
 .line {
 	margin: 2em 0;
@@ -45,8 +49,6 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin: 2em 2em 0 2em;
-	background-color: $form-bg;
 	h1 {
 		padding: 0.5em 1em;
 		margin: 1em 0;
@@ -54,12 +56,15 @@ body {
 		color: $cyan;
 		font-size: 2.8rem;
 	}
-	.form {
+	.form {	
+		margin: 2em;
+		background-color: $form-bg;
+		box-shadow: 0px 0px 20px 4px #000;
 		form {
 			padding: 1em 2em;
 			display: flex;
 			flex-direction: column;
-
+			
 			.form-box {
 				display: flex;
 				flex-direction: column;
@@ -72,6 +77,11 @@ body {
 					padding: 0.5em 1em;
 					border-radius: 5px;
 					border: 1px solid none;
+					transition: transform .3s;
+					box-shadow:3px 3px 10px 1px #000;
+					&:focus{
+						transform: scale(1.1);
+					}
 				}
 				.error-text {
 					margin: 0.5em 1em;
@@ -92,7 +102,7 @@ body {
 				display: flex;
 				justify-content: space-around;
 				align-items: center;
-				margin-top: 1em;
+				margin: 5em 0;
 				button {
 					padding: 0.8em 1.5em;
 					display: flex;
@@ -121,6 +131,10 @@ body {
 						background-color: $cyan;
 						color: #000;
 					}
+				}
+				.loader{
+					display: none;
+					animation: spinning 3s infinite;
 				}
 			}
 			.popup {
@@ -173,20 +187,64 @@ body {
 		}
 	}
 }
+@keyframes spinning {
+	from{
+		transform: rotate(0deg);
+	} to{
+		transform: rotate(360deg);
+	}
+}
 @media (min-width: 768px) {
+	.add-button{
+		margin-bottom: 1.5em;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		.add-user {
+			padding: 1em 2em;
+			width: 70%;
+			font-size: 2rem;
+		}
+	}
 	.content {
 		h1 {
 			font-size: 4rem;
 		}
 		.form {
+			width: 90%;
 			form {
+				display: flex;
+				justify-content: center;
+				align-items: center;
 				.form-box {
+
+					width: 80%;
 					label {
 						font-size: 2rem;
 					}
 					input {
+						
 						font-size: 1.8rem;
 						padding: 1em 2em;
+					}
+				}
+				.user-datas{
+					width: 100%;
+					.user-data{
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						flex-direction: column;
+						.img{
+							width: 80%;
+							img{
+								padding: 2em 2em 2em 0;
+								display: flex;
+								justify-content: flex-start;
+								align-items: start;
+							}
+						}
 					}
 				}
 				.control-buttons {
@@ -208,12 +266,36 @@ body {
 	}
 }
 @media (min-width: 1400px) {
-	.content {
+	.add-button{
+		margin-bottom: 1.5em;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		.add-user {
+			padding: 1em 2em;
+			width: 70%;
+			font-size: 2rem;
+			transition: background-color .3s;
+			&:hover{
+				background-color: #0fccd6;
+			}
+		}
+	}
+	.content { 
 		display: flex;
 		flex-direction: row;
 		align-items: flex-start;
 		.form {
+			margin: 3em 0;
 			width: 40%;
+			form{
+				.form-box{
+					input{
+						box-shadow:5px 5px 20px 5px #000;
+					}
+				}
+			}
 		}
 	}
 }

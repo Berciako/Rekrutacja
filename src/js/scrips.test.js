@@ -14,10 +14,8 @@ const popup = document.querySelector('.popup')
 const errorInfo = document.querySelector('.error-info')
 const addUserBtn = document.querySelector('.add-user')
 const userDatas = document.querySelector('.user-datas')
-
+const loader = document.querySelector('.loader')
 //
-
-
 
 // DODAWANIE UCZESTNIKÓW
 
@@ -25,13 +23,14 @@ let participant
 let allInputs
 let allMails = document.getElementsByClassName('mail')
 
-
 const addParticipant = e => {
 	e.preventDefault()
 	participant = document.createElement('div')
 	participant.classList.add('user-data')
 	participant.innerHTML = `
-	  <img class="x-icon" src="./dist/img/x.svg" alt="usuń użytkownika">
+	<div class="img">
+	<img class="x-icon" src="./dist/img/x.svg" alt="usuń użytkownika">
+</div>
 	<div class="form-box">
 	 <label for="participant-name">Imię uczestnika:</label>
 								<input type="text" id="participant-name" placeholder="Podaj imię uczestnika">
@@ -74,6 +73,7 @@ const checkMail = () => {
 	Array.from(allMails).forEach(el => {
 		if (re.test(el.value)) {
 			clearError(el)
+			lookForMail()
 		} else {
 			showError(el, 'Email jest niepoprawyny')
 		}
@@ -91,25 +91,25 @@ const countErrors = () => {
 		}
 	})
 	if (errorCount === 0) {
-		popup.classList.add('show-popup')
-		hideError()
+		sendBtn.style.display = 'none'
+		clearBtn.style.display = 'none'
+		loader.style.display = 'block'
+		setTimeout(() => {
+			popup.classList.add('show-popup')
+			window.scrollTo({ top: 0, behavior: 'smooth' })
+		  }, 3000)
+		// setTimeout(showPopup(), 5000)
 		clearForm()
 	}
 }
-
-const hideError = () => {
-	errorInfo.style.display = 'none'
+const showPopup = () => {
+	popup.classList.add('show-popup')
 }
-
 const clearForm = () => {
 	allInputs.forEach(el => {
 		el.value = ''
 		clearError(el)
 	})
-}
-
-const closePopup = () => {
-	popup.classList.remove('show-popup')
 }
 
 // USUWANIE UCZESTNIKÓW
@@ -123,7 +123,7 @@ const checkClick = e => {
 }
 
 const deleteParticipant = e => {
-	e.target.closest('div').remove()
+	e.target.closest('div.user-data').remove()
 }
 
 //
@@ -131,17 +131,18 @@ const deleteParticipant = e => {
 // Mail Checker
 
 const lookForMail = () => {
-	let testMails = [...document.getElementsByClassName('mail')].map(item => item.value)
-	testMails.forEach(el =>{
-		if(testMails.includes(el.value, el)){
-			console.log('istnieje');
-		} else{
-			console.log('nie istnieje');
+	let testMails = []
+	Array.from(allMails).forEach(el => {
+		if (testMails.includes(el.value)) {
+			showError(el, 'Podano już tego maila')
+		} else {
+			testMails.push(el.value)
 		}
 	})
 }
 
-//
+// LOADING
+
 clearBtn.addEventListener('click', e => {
 	e.preventDefault()
 	allInputs = document.querySelectorAll('.form-box input')
@@ -162,13 +163,15 @@ sendBtn.addEventListener('click', e => {
 		}
 	})
 	checkMail()
-	lookForMail()
 	countErrors()
 })
 
 closeBtn.addEventListener('click', e => {
 	e.preventDefault()
 	popup.classList.remove('show-popup')
+	sendBtn.style.display = ''
+	clearBtn.style.display = ''
+	loader.style.display = 'none'
 })
 
 addUserBtn.addEventListener('click', addParticipant)

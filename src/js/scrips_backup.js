@@ -11,31 +11,26 @@ const sendBtn = document.querySelector('.send')
 const clearBtn = document.querySelector('.clear')
 const closeBtn = document.querySelector('.close')
 const popup = document.querySelector('.popup')
-const xIcon = document.querySelector('.x-icon')
 const errorInfo = document.querySelector('.error-info')
 const addUserBtn = document.querySelector('.add-user')
-
-//
-
 const userDatas = document.querySelector('.user-datas')
-
-let participant
-let newUser
-let newMail
-let newUserMail
-let allUsers
+const loader = document.querySelector('.loader')
+//
 
 // DODAWANIE UCZESTNIKÓW
 
+let participant
 let allInputs
-
+let allMails = document.getElementsByClassName('mail')
 
 const addParticipant = e => {
 	e.preventDefault()
 	participant = document.createElement('div')
 	participant.classList.add('user-data')
 	participant.innerHTML = `
-	  <img class="x-icon" src="/dist/img/x.svg" alt="usuń użytkownika">
+	<div class="img">
+	<img class="x-icon" src="./dist/img/x.svg" alt="usuń użytkownika">
+</div>
 	<div class="form-box">
 	 <label for="participant-name">Imię uczestnika:</label>
 								<input type="text" id="participant-name" placeholder="Podaj imię uczestnika">
@@ -48,7 +43,7 @@ const addParticipant = e => {
 							</div>
 							<div class="form-box">
 								<label for="participant-email">Email uczestnika:</label>
-								<input type="text" id="participant-email" placeholder="Podaj email uczestnika">
+								<input type="text" id="participant-email" class="mail" placeholder="Podaj email uczestnika">
 								<p class="error-text">error</p>
 							</div>
 							<div class="line"></div>`
@@ -69,19 +64,20 @@ const clearError = input => {
 	formBox.classList.remove('error')
 }
 
-
-
 // Mail
 
-const checkMail = email => {
+const checkMail = () => {
 	const re =
 		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{2,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-	if (re.test(email.value)) {
-		clearError(email)
-	} else {
-		showError(email, 'Email jest niepoprawyny')
-	}
+	Array.from(allMails).forEach(el => {
+		if (re.test(el.value)) {
+			clearError(el)
+			lookForMail()
+		} else {
+			showError(el, 'Email jest niepoprawyny')
+		}
+	})
 }
 
 //
@@ -95,28 +91,25 @@ const countErrors = () => {
 		}
 	})
 	if (errorCount === 0) {
-		popup.classList.add('show-popup')
-		hideError()
+		sendBtn.style.display = 'none'
+		clearBtn.style.display = 'none'
+		loader.style.display = 'block'
+		setTimeout(() => {
+			popup.classList.add('show-popup')
+			window.scrollTo({ top: 0, behavior: 'smooth' })
+		  }, 3000)
+		// setTimeout(showPopup(), 5000)
 		clearForm()
 	}
 }
-
-
-const hideError = () => {
-	errorInfo.style.display = 'none'
+const showPopup = () => {
+	popup.classList.add('show-popup')
 }
-
-
 const clearForm = () => {
 	allInputs.forEach(el => {
 		el.value = ''
 		clearError(el)
 	})
-}
-
-
-const closePopup = () => {
-	popup.classList.remove('show-popup')
 }
 
 // USUWANIE UCZESTNIKÓW
@@ -129,13 +122,26 @@ const checkClick = e => {
 	}
 }
 
-
 const deleteParticipant = e => {
-	e.target.closest('div').remove()
+	e.target.closest('div.user-data').remove()
 }
 
-// 
+//
 
+// Mail Checker
+
+const lookForMail = () => {
+	let testMails = []
+	Array.from(allMails).forEach(el => {
+		if (testMails.includes(el.value)) {
+			showError(el, 'Podano już tego maila')
+		} else {
+			testMails.push(el.value)
+		}
+	})
+}
+
+// LOADING
 
 clearBtn.addEventListener('click', e => {
 	e.preventDefault()
@@ -146,28 +152,27 @@ clearBtn.addEventListener('click', e => {
 	})
 })
 
-
 sendBtn.addEventListener('click', e => {
 	e.preventDefault()
 	allInputs = document.querySelectorAll('.form-box input')
-	allInputs.forEach(el =>{
+	allInputs.forEach(el => {
 		if (el.value === '') {
 			showError(el, el.placeholder)
 		} else {
 			clearError(el)
 		}
 	})
-	checkMail(email)
-	checkMail(participantEmail)
+	checkMail()
 	countErrors()
 })
-
 
 closeBtn.addEventListener('click', e => {
 	e.preventDefault()
 	popup.classList.remove('show-popup')
+	sendBtn.style.display = ''
+	clearBtn.style.display = ''
+	loader.style.display = 'none'
 })
-
 
 addUserBtn.addEventListener('click', addParticipant)
 userDatas.addEventListener('click', checkClick)
